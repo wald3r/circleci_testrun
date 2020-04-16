@@ -10,6 +10,6 @@ jobs:
     steps:
       - checkout
       - run: docker build -t test .
-      - run: docker login --email=_ --username=_ --password=$HEROKU_TOKEN registry.heroku.com
+      - run: heroku container:login
       - run: docker tag test:latest registry.heroku.com/test/web
       - run: docker push registry.heroku.com/test/web
