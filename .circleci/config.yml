@@ -1,16 +1,11 @@
-version: 2.1
-
-workflows:
-  heroku_deploy:
-    jobs:
-      - build
-jobs:
+version: 2
+jobs: 
   build:
-    machine: true
-    steps:
-      - checkout
-      - run: docker build -t test .
-      - run: heroku container:login
-      - run: heroku container:push test/web
-      - run: heroku container:release test/web
-  
+   machine: true
+	
+   steps: 
+     - checkout
+     - run: docker build -t test .
+     - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+     - run: docker tag test registry.heroku.com/$HEROKU_APP_NAME/web
+     - run: docker push registry.heroku.com/$HEROKU_APP_NAME/web
