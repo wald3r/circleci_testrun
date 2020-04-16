@@ -10,5 +10,6 @@ workflows:
 jobs:
   build:
     steps:
-      run: docker build -t frontend .
-      run: docker run -d -p 5000:5000 frontend
+      - checkout
+      - run: docker build -t frontend .
+      - run: docker run -d -p 5000:5000 frontend
