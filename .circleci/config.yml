@@ -9,7 +9,8 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: docker build -t test .
+      - run: docker build .
       - run: heroku container:login
-      - run: docker tag test:latest registry.heroku.com/test/web
-      - run: docker push registry.heroku.com/test/web
+      - run: heroku container:push web
+      - run: heroku container:release web
+  
