@@ -9,7 +9,7 @@ workflows:
 
 jobs:
   build:
-    docker: true
+    machine: true
     steps:
       - checkout
       - run: docker build -t frontend .
