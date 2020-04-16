@@ -13,4 +13,5 @@ jobs:
     steps:
       - checkout
       - run: docker build -t frontend .
-      - run: docker run -d -p 5000:5000 frontend
+      - run: docker container:push web
+      - run: docker container:release web
