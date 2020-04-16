@@ -4,4 +4,11 @@ orbs:
 workflows:
   heroku_deploy:
     jobs:
+      - build
       - heroku/deploy-via-git
+
+jobs:
+  build:
+    steps:
+      run: docker build -t frontend .
+      run: docker run -d -p 5000:5000 frontend
