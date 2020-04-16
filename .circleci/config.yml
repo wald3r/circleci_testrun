@@ -11,5 +11,5 @@ jobs:
       - checkout
       - run: docker pull devopsdockeruh/heroku-example:latest
       - run: heroku container:login
-      - run: heroku container:push devopsdockeruh/heroku-example
-      - run: heroku container:release devopsdockeruh/heroku-example
+      - run: heroku container:push devopsdockeruh/heroku-example:latest
+      - run: heroku container:release devopsdockeruh/heroku-example:latest
