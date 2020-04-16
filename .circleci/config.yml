@@ -1,15 +1,20 @@
-version: 2.1
+machine:
+  services:
+    - docker
 
-workflows:
-  heroku_deploy:
-    jobs:
-      - build
-jobs:
-  build:
-    machine: true
-    steps:
-      - checkout
-      - run: docker pull devopsdockeruh/heroku-example:latest
-      - run: heroku container:login
-      - run: heroku container:push devopsdockeruh/heroku-example:latest
-      - run: heroku container:release devopsdockeruh/heroku-example:latest
+dependencies:
+  override:
+    - echo "no deps"
+
+test:
+  post:
+    - echo "yay - no tests"
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - docker build -t test .
+      - docker login --email=_ --username=_ --password=$HEROKU_TOKEN registry.heroku.com
+      - docker tag test:latest registry.heroku.com/test/web
+      - docker push registry.heroku.com/test/web
