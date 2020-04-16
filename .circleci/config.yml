@@ -9,6 +9,8 @@ workflows:
 
 jobs:
   build:
+    docker: 
+      - build: .
     steps:
       - checkout
       - run: docker build -t frontend .
