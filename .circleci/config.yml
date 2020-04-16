@@ -10,5 +10,5 @@ jobs:
     steps:
       - checkout
       - run: docker build -t frontend .
-      - run: docker container:push web
-      - run: docker container:release web
+      - run: heroku container:push web
+      - run: heroku container:release web
