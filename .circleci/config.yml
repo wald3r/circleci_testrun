@@ -1,10 +1,11 @@
+version: 2
+jobs: 
+  build:
+   machine: true
 
-deployment:
-  prod:
-    branch: master
-    heroku:
-      appname: $HEROKU_APP_NAME
-  staging:
-    branch: staging
-    heroku:
-      appname: $HEROKU_APP_NAME
+   steps: 
+     - checkout
+     - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+     - run: heroku container:push web -a $HEROKU_APP_NAME
+     - run: heroku container:release web
+
