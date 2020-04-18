@@ -8,6 +8,6 @@ jobs:
      - run: docker pull devopsdockeruh/heroku-example
      - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
      - run: docker tag devopsdockeruh/heroku-example:latest registry.heroku.com/$HEROKU_APP_NAME/web
-     - run: docker push registry.heroku.com/$HEROKU_APP_NAME/web
-     - run: heroku container:login
+     
+     - run: heroku container:push web -a $HEROKU_APP_NAME
      - run: heroku container:release registry.heroku.com/$HEROKU_APP_NAME/web
